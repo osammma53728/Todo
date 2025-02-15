@@ -31,6 +31,7 @@ private val adapter = TasksAdapter()
         dao = MyDatabase.getInstance().tasksDao()
         initRecyclerView()
         initCalendarView()
+
     }
 
     private fun initCalendarView() {
@@ -51,6 +52,10 @@ private val adapter = TasksAdapter()
 
     private fun initRecyclerView() {
         binding.rvTasks.adapter = adapter
+        adapter.onTaskClickListener = {position,task->
+            dao.deleteTask(task)
+            adapter.deleteTask(position,task)
+        }
 
     }
 

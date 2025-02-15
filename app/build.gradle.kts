@@ -49,8 +49,8 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
     implementation(libs.material.calendarview)
-
-
+    implementation ("com.github.zerobranch:SwipeLayout:1.3.1")
+    debugImplementation ("com.squareup.leakcanary:leakcanary-android:2.14")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

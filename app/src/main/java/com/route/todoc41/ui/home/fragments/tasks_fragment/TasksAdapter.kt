@@ -11,13 +11,18 @@ import java.util.Calendar
 
 class TasksAdapter:RecyclerView.Adapter<TasksAdapter.TaskViewHolder>() {
     private var tasksList = mutableListOf<Task>()
-
+var onTaskClickListener:((Int,Task)->Unit)? = null
     @SuppressLint("NotifyDataSetChanged")
     fun setTasksList(tasks:MutableList<Task>){
         tasksList = tasks
         notifyDataSetChanged()
     }
+       fun deleteTask(position: Int,task: Task){
+           tasksList.removeAt(position)
+           notifyItemRemoved(position)
+           notifyItemRangeChanged(position,tasksList.size-position)
 
+       }
     class TaskViewHolder(val binding: ItemTaskBinding):RecyclerView.ViewHolder(binding.root){
         fun bind(task:Task){
            binding.title.text = task.title
@@ -38,5 +43,10 @@ class TasksAdapter:RecyclerView.Adapter<TasksAdapter.TaskViewHolder>() {
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         val task = tasksList[position]
         holder.bind(task)
+        onTaskClickListener?.let {
+            holder.binding.leftView.setOnClickListener {
+               it(position,task)
+            }
+        }
     }
 }

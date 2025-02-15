@@ -54,6 +54,7 @@
 
     </com.google.android.material.bottomappbar.BottomAppBar>
 
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add_task"
         android:layout_width="wrap_content"
@@ -61,7 +62,6 @@
         android:contentDescription="@string/add_new_task"
         android:src="@drawable/ic_add"
         app:layout_anchor="@id/bottomAppBar" />
-
 
     <include
         android:id="@+id/content"
